@@ -1,0 +1,17 @@
+{
+  "name": "360bot",
+  "version": "0.0.1",
+  "description": "A Pull request announcer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "botbuilder": "^3.11.0",
+    "dotenv-extended": "^2.0.1",
+    "restify": "^6.0.1",
+    "shortid": "^2.2.8"
+  },
+  "author": "assimoes",
+  "license": "MIT"
+}
