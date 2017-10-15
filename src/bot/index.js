@@ -1,7 +1,6 @@
 'use strict';
 
 const _builder = require('botbuilder');
-const _flow = require('./flow');
 const _dialog = require('./dialog');
 
 const _connector = new _builder.ChatConnector({

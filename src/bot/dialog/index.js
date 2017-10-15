@@ -6,7 +6,7 @@ module.exports = (bot, builder) => {
     bot.dialog('getGithubProfile', [
         (session, args, next) => {
 
-            if (!global.db.username) {
+            if (!global.db.Get(session.message.user.name)) {
                 let _shortid = ssid.generate();
                 session.privateConversationData.repository = _shortid;
                 let _ssid = ssid.generate();
@@ -60,7 +60,7 @@ checkGithubProfile = (session, results) => {
             if(!parsed.name || parsed.name !== session.privateConversationData.repository) {
                 session.endConversation("Sorry man! I didn't find the repo I told you to create. Shall we try this again?");
             } else {
-                global.db.username = session.message.user.name;
+                global.db.Add(session.message.user.name, {name: session.message.user.name});
                 session.endConversation(`Everything looks good man! I've added you to the list!`);
             }
         });
