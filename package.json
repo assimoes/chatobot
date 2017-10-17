@@ -9,6 +9,7 @@
   "dependencies": {
     "botbuilder": "^3.11.0",
     "dotenv-extended": "^2.0.1",
+    "mongoose": "^4.12.2",
     "restify": "^6.0.1",
     "shortid": "^2.2.8"
   },
