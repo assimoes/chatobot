@@ -8,7 +8,7 @@ module.exports = () => {
     const _server = _restify.createServer();
     _server.use(_restify.plugins.bodyParser());
 
-    _server.post('/chatbot/messages', _bot.connector('*').listen());
+    _server.post('/api/messages', _bot.connector('*').listen());
     _server.post('/github/notifications', notificationsHandler);
 
     _server.listen(process.env.PORT || 8009, () => {
