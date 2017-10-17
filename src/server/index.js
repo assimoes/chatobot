@@ -20,15 +20,14 @@ module.exports = () => {
 notificationsHandler = (req, res, next) => {
 
     // test purposes... should iterate through reviewers and send a message.
-
     db.GetUserFromGithub(req.body.pull_request.user.login, (err, _user)=>{
-
-        var _address = _user.address;
-        let _msg = new _builder.Message().address(_address);  
-        _msg.text("Hey man, someone asked for your review on a Pull Request");
-        _msg.textLocale("en-US");
-        _bot.send(_msg);
-
-        res.send({status: 200});
+        if (_user) {
+            var _address = _user.address;
+            let _msg = new _builder.Message().address(_address);  
+            _bot.beginDialog(_address, "newPullRequest", req.body.pull_request);
+            res.send({status: 200});
+        } else {
+            res.send({status:404});
+        }
     })
 };

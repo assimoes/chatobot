@@ -1,5 +1,6 @@
 var ssid = require('shortid');
 var https = require('https');
+const _builder = require('botbuilder');
 var db = require('../../store/mongodb');
 
 module.exports = (bot, builder) => {
@@ -35,6 +36,20 @@ module.exports = (bot, builder) => {
         }
     ])
     .triggerAction({matches: /^git*/i});
+
+    bot.dialog('newPullRequest',[
+        (session, args, next) => {
+            var card = new _builder.HeroCard(session).title("Pull Request")
+            .subtitle("You've got a pull request")
+            .text("You've got a Pull Request from %s", args.user.login)
+            .buttons([
+                _builder.CardAction.openUrl(session, args.html_url,'Check it out on Github!')
+            ]);
+            var msg = new _builder.Message(session).addAttachment(card);
+            session.send(msg);
+            session.endDialogWithResult({response: session.message.text});
+        }
+    ]);
 }
 
 
